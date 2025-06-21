@@ -3,18 +3,29 @@ package pl.pjatk.exchangerate.model;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Entity
+@Schema(description = "Entity representing an average exchange rate for a currency over a period")
 public class ExchangeRateEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "Unique identifier of the record", example = "1")
     private Long id;
 
+    @Schema(description = "Currency code (ISO 4217)", example = "PLN")
     private String currency;
+
+    @Schema(description = "Start date of the period (inclusive)", example = "2025-06-01")
     private LocalDate startDate;
+
+    @Schema(description = "End date of the period (inclusive)", example = "2025-06-01")
     private LocalDate endDate;
+
+    @Schema(description = "Average exchange rate calculated for the period", example = "2.13742069")
     private double averageRate;
+
+    @Schema(description = "Timestamp when the data was queried and stored", example = "2025-06-21T13:45:00")
     private LocalDateTime queryTimestamp;
 
     public ExchangeRateEntity() {}
